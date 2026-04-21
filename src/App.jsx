@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
-import { Mail, Globe, ArrowDown, ExternalLink, ChevronRight } from 'lucide-react';
+import { Mail, Globe, ArrowDown, ExternalLink, ChevronRight, Menu, X } from 'lucide-react';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,6 +14,15 @@ function App() {
   const lenisRef = useRef(null);
   const horizontalRef = useRef(null);
   const [hasEntered, setHasEntered] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  }, [isMenuOpen]);
 
   useEffect(() => {
     if (lenisRef.current) {
@@ -166,12 +175,19 @@ function App() {
       <div className="aurora"></div>
       
       <header>
-        <nav>
+        <nav className={isMenuOpen ? 'nav-open' : ''}>
           <div className="logo-text">TDR <span className="logo-studio">STUDIO</span></div>
-          <div className="nav-links">
-            <a href="#about" className="nav-link">Studio</a>
-            <a href="#projects" className="nav-link">Forge</a>
-            <a href="#contact" className="nav-link">Connect</a>
+          <button 
+            className="nav-toggle" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+          <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+            <a href="#about" className="nav-link" onClick={() => setIsMenuOpen(false)}>Studio</a>
+            <a href="#projects" className="nav-link" onClick={() => setIsMenuOpen(false)}>Forge</a>
+            <a href="#contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>Connect</a>
           </div>
         </nav>
       </header>
@@ -294,10 +310,8 @@ function App() {
         
         <div className="kinetic-footer">
           <div>&copy; 2026 THE DIVINE ROAR STUDIO</div>
-          <div style={{ display: 'flex', gap: '2rem' }}>
-            <a href="https://instagram.com/thedivineroar" target="_blank" rel="noopener noreferrer" className="nav-link">Instagram</a>
-            <a href="https://twitter.com/thedivineroar" target="_blank" rel="noopener noreferrer" className="nav-link">Twitter</a>
-            <a href="https://linkedin.com/company/thedivineroar" target="_blank" rel="noopener noreferrer" className="nav-link">LinkedIn</a>
+          <div className="footer-links" style={{ display: 'flex', gap: '2rem' }}>
+            {/* Social links removed until accounts are active */}
           </div>
           <div style={{ color: '#d4af37', fontWeight: 800 }}>STRICTLY PREMIUM</div>
         </div>
