@@ -273,7 +273,13 @@ function App() {
               </div>
             </div>
 
-            <div className="project-card">
+            <a 
+              href="https://yojana-ai-seven.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="project-card" 
+              style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+            >
               <img 
                 src="/project_ai.png" 
                 alt="Yojna.ai conversational AI interface" 
@@ -286,9 +292,9 @@ function App() {
                 <span className="project-tag">AI Intelligence</span>
                 <h3>Yojna.ai</h3>
                 <p>Conversational AI concierge for Government Schemes, bridging the gap between citizens and eligibility.</p>
-                <div className="chip" style={{ padding: '0.5rem 1.2rem', fontSize: '0.6rem' }}>View Case Study</div>
+                <div className="chip" style={{ padding: '0.5rem 1.2rem', fontSize: '0.6rem' }}>Launch Experience</div>
               </div>
-            </div>
+            </a>
 
             <div className="project-card" style={{ background: 'rgba(212, 175, 55, 0.05)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div style={{ textAlign: 'center' }}>
