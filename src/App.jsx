@@ -17,12 +17,14 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Force reset on reload
+    // One-time reset on mount
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+  }, []);
 
+  useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add('menu-open');
     } else {
@@ -133,6 +135,10 @@ function App() {
   }, []);
 
   const handleEnter = () => {
+    window.scrollTo(0, 0);
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
     if (audioRef.current) {
       audioRef.current.play().then(() => {
         audioRef.current.pause();
