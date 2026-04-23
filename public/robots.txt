@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://thedivineroar.com/sitemap.xml
+Sitemap: https://tdrstudio.vercel.app/sitemap.xml
