@@ -107,15 +107,20 @@ function App() {
 
       // ── HORIZONTAL SCROLL: Projects ──
       if (horizontalRef.current) {
-        const cards = gsap.utils.toArray('.project-card');
-        gsap.to(cards, {
-          xPercent: -100 * (cards.length - 1),
+        const getScrollAmount = () => {
+          return horizontalRef.current.scrollWidth - window.innerWidth;
+        };
+
+        gsap.to(horizontalRef.current, {
+          x: () => -getScrollAmount(),
           ease: "none",
           scrollTrigger: {
             trigger: ".projects-section",
             pin: true,
             scrub: 1,
-            end: () => "+=" + horizontalRef.current.offsetWidth
+            start: "top top",
+            end: () => "+=" + getScrollAmount(),
+            invalidateOnRefresh: true,
           }
         });
       }
@@ -125,6 +130,11 @@ function App() {
         { y: -80, opacity: 0 },
         { y: 0, opacity: 1, duration: 1, ease: "power4.out", delay: 0.3 }
       );
+
+      // ── REFRESH: Ensure all triggers are calibrated after layout stabilizes ──
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 500);
 
     }, containerRef);
 

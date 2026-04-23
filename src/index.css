@@ -44,6 +44,17 @@ body {
   overflow-x: hidden;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 /* SEO Utilities */
 .sr-only {
   position: absolute;
@@ -344,20 +355,26 @@ section {
 
 /* Projects Horizontal Scroll */
 .forge-header {
-  padding: 8vh 10vw 4vh;
+  padding: 6vh 10vw 2vh; /* Reduced padding */
 }
 
 .projects-section {
-  /* No padding — cards fill exactly 100vh when pinned */
+  width: 100%;
+  height: 85vh; /* Reduced from 100vh to remove dead space */
+  display: flex;
+  align-items: center; /* Center vertically for better balance */
   overflow: hidden;
+  background: var(--bg-deep);
 }
 
 .horizontal-scroll-container {
   display: flex;
   gap: 4vw;
   width: max-content;
-  padding: 4vh 10vw 8vh; /* top/bottom black space makes it clear it's a scroll zone */
+  padding: 0 10vw;
   align-items: center;
+  margin-top: -2vh; /* Slight pull up towards header */
+  will-change: transform;
 }
 
 .project-card {
@@ -438,10 +455,10 @@ section {
 }
 
 .contact-email {
-  font-size: clamp(2rem, 8vw, 6rem);
+  font-size: clamp(1.2rem, 4vw, 3.2rem);
   font-family: var(--font-heading);
   font-weight: 800;
-  margin: 4rem 0;
+  margin: 3rem auto;
   display: inline-block;
   text-decoration: none;
   background: var(--accent-gold);
@@ -449,7 +466,7 @@ section {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: 0.5s;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .contact-email:hover {
