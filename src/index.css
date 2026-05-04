@@ -378,8 +378,8 @@ section {
 }
 
 .project-card {
-  width: min(750px, 78vw);
-  height: 80vh;   /* smaller than full-viewport — black space shows above & below */
+  width: min(900px, 85vw);
+  height: 65vh;   /* adjusted for better image visibility */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -433,7 +433,7 @@ section {
 }
 
 .project-info h3 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: var(--font-display);
   margin-bottom: 1.5rem;
   line-height: 1;

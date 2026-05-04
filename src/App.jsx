@@ -112,14 +112,14 @@ function App() {
         };
 
         gsap.to(horizontalRef.current, {
-          x: () => -getScrollAmount(),
+          x: () => -(horizontalRef.current.scrollWidth - window.innerWidth),
           ease: "none",
           scrollTrigger: {
             trigger: ".projects-section",
             pin: true,
             scrub: 1,
             start: "top top",
-            end: () => "+=" + getScrollAmount(),
+            end: () => "+=" + horizontalRef.current.scrollWidth,
             invalidateOnRefresh: true,
           }
         });
@@ -132,9 +132,10 @@ function App() {
       );
 
       // ── REFRESH: Ensure all triggers are calibrated after layout stabilizes ──
+      // Increase delay to ensure wide project cards and images are fully measured
       setTimeout(() => {
         ScrollTrigger.refresh();
-      }, 500);
+      }, 1000);
 
     }, containerRef);
 
@@ -319,6 +320,29 @@ function App() {
                 <h3>Yojna.ai</h3>
                 <p>Conversational AI concierge for Government Schemes, bridging the gap between citizens and eligibility.</p>
                 <div className="chip" style={{ padding: '0.5rem 1.2rem', fontSize: '0.6rem' }}>Launch Experience</div>
+              </div>
+            </a>
+
+            <a 
+              href="https://gayatri-steel.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="project-card" 
+              style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+            >
+              <img 
+                src="/project_steel_web.png" 
+                alt="Gayatri Steel official website" 
+                className="project-bg-visual" 
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="project-overlay"></div>
+              <div className="project-info">
+                <span className="project-tag">Corporate Identity</span>
+                <h3>Gayatri Steel Web</h3>
+                <p>A premium digital presence for a leading industrial steel manufacturer, showcasing their global reach and quality standards.</p>
+                <div className="chip" style={{ padding: '0.5rem 1.2rem', fontSize: '0.6rem' }}>Launch Site</div>
               </div>
             </a>
 
