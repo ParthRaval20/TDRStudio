@@ -150,9 +150,13 @@ function App() {
       lenisRef.current.scrollTo(0, { immediate: true });
     }
     if (audioRef.current) {
+      // Unlock audio context silently to prevent double roar on mobile
+      const prevVolume = audioRef.current.volume;
+      audioRef.current.volume = 0;
       audioRef.current.play().then(() => {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
+        audioRef.current.volume = prevVolume;
       }).catch(() => {});
     }
     setHasEntered(true);
